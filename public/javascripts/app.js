@@ -7,6 +7,7 @@
         console.log("App Started...");
         load_header();
         loadHome();
+        laodFooter();
     }
 
     function load_header(){
@@ -36,6 +37,18 @@
         });
 
     }
+
+    function loadFooter()
+    {
+        let XHR = new XMLHttpRequest();
+        XHR.open("GET", "/partials/footer.ejs", true);
+        XHR.send();
+        XHR.addEventListener("readystatechange", function(){
+            let html = document.getElementsByTagName("footer")[0];
+            html.innerHTML = XHR.responseText;
+        });
+    }
+
     function navigate(goto){
         window.history.pushState("", "", goto);
         switch(goto)
@@ -45,16 +58,20 @@
                 break;
             case "about":
                 loadAbout(goto);
+                loadFooter();
                 break;
             case "projects":
                 loadProjects(goto);
+                loadFooter();
                 break;
             case "services":
                 loadServices(goto);
+                loadFooter();
                 break;
             case "contact":
                 //window.location = "./contact";
                 loadContact(goto);
+                loadFooter();
                 break;
         }
     }
