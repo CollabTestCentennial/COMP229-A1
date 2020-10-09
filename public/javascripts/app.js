@@ -5,14 +5,14 @@
     function Start()
     {
         console.log("App Started...");
-        load_header();
-        loadHome();
-        laodFooter();
+        load_header('Intro');
+        loadHome('Intro');
+        loadFooter();
     }
 
-    function load_header(){
-        document.title = 'Landing';
-        let title = document.title;
+    function load_header(title)
+    {
+        document.title = title;
         //we need to get the location of the specific page
         console.log(title);
 
@@ -22,8 +22,8 @@
         XHR.addEventListener("readystatechange", function(){
             let html = document.getElementsByTagName("header")[0];
             html.innerHTML = XHR.responseText;
+
             let t1 = document.getElementById("title").innerHTML = title;
-            console.log(title);
 
             let navLinks = document.getElementsByTagName("a");
             for(const link of navLinks){
@@ -50,26 +50,34 @@
     }
 
     function navigate(goto){
-        window.history.pushState("", "", goto);
+        //window.history.pushState("", "", goto);
         switch(goto)
         {
-            case "Intro":
-                window.location = './index';
+            case "intro":
+                //t1 = document.getElementById("title").innerHTML = title;
+                //window.location = './index';
+                //window.history.pushState("", "", "");
+                //loadHome(goto);
+                //loadFooter();
+                window.location.reload();
                 break;
             case "about":
-                loadAbout(goto);
-                loadFooter();
+                window.location = "./about";
+                //loadAbout(goto);
+                //loadFooter();
                 break;
             case "projects":
+                window.history.pushState("", "", "");
                 loadProjects(goto);
                 loadFooter();
                 break;
             case "services":
+                window.history.pushState("", "", "");
                 loadServices(goto);
                 loadFooter();
                 break;
             case "contact":
-                //window.location = "./contact";
+                window.history.pushState("", "", "");
                 loadContact(goto);
                 loadFooter();
                 break;
@@ -92,18 +100,18 @@
     {
         console.log("loading about");
 
-        window.location.replace("/about");
-      /*  let XHR = new XMLHttpRequest();
+      //  window.location.replace("/about");
+        let XHR = new XMLHttpRequest();
         XHR.open("GET", "/partials/about.ejs", true);
         XHR.send();
         XHR.addEventListener("readystatechange", function(){
             let html = document.getElementsByTagName("main")[0];
             html.innerHTML = XHR.responseText;
-        });*/
+        });
     }
     function loadProjects(goto)
     {
-        console.log("loading projects");
+        //console.log("loading projects");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();
@@ -116,7 +124,7 @@
     }
     function loadServices(goto)
     {
-        console.log("loading services");
+        //console.log("loading services");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();
@@ -129,7 +137,7 @@
     }
     function loadContact(goto)
     {
-        console.log("running the contact");
+        //console.log("running the contact");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();

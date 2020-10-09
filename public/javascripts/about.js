@@ -4,15 +4,15 @@
 (function() {
     function Start()
     {
-        console.log("App Started...");
+        console.log("About Started...");
         load_header('about');
         loadAbout();
     }
     function load_header(title){
-        //document.title = 'Landing';
+        document.title = title;
         //let title = document.title;
         //we need to get the location of the specific page
-        console.log(title);
+        //console.log(title);
 
         let XHR = new XMLHttpRequest();
         XHR.open("GET", "/partials/twitHead.ejs", true);
@@ -35,22 +35,26 @@
     }
     
     function navigate(goto){
-        window.history.pushState("", "", goto);
+        //window.history.pushState("", "", "");
         switch(goto)
         {
             case "intro":
-                loadHome(goto);
+                window.location = "/";
                 break;
             case "about":
-                loadAbout(goto);
+                window.location.reload();
                 break;
             case "projects":
+                window.history.pushState("", "", "");
                 loadProjects(goto);
+                loadFooter();
                 break;
             case "services":
+                window.history.pushState("", "", "");
                 loadServices(goto);
                 break;
             case "contact":
+                window.history.pushState("", "", "");
                 loadContact(goto);
                 break;
         }
@@ -73,7 +77,7 @@
     {
         console.log("loading about");
 
-       // window.location.replace("/about");
+        //window.location.replace("/about");
         let XHR = new XMLHttpRequest();
         XHR.open("GET", "/partials/about.ejs", true);
         XHR.send();
