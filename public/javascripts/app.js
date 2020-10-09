@@ -1,4 +1,9 @@
-//to reference in the client
+/*
+File: app.js
+Name: Stephen Kamino
+StudentID: 822600292
+Date: Oct 09 2020
+*/
 "use strict";
 
 (function() {
@@ -13,7 +18,6 @@
     function load_header(title)
     {
         document.title = title;
-        //we need to get the location of the specific page
         console.log(title);
 
         let XHR = new XMLHttpRequest();
@@ -29,7 +33,6 @@
             for(const link of navLinks){
                 link.addEventListener("click", (event)=>{
                     event.preventDefault();
-                    //when you click it needs to find the next title
                     let id = link.getAttribute("id");
                     navigate(id);
                 })
@@ -50,21 +53,14 @@
     }
 
     function navigate(goto){
-        //window.history.pushState("", "", goto);
         switch(goto)
         {
             case "intro":
-                //t1 = document.getElementById("title").innerHTML = title;
-                //window.location = './index';
-                //window.history.pushState("", "", "");
-                //loadHome(goto);
-                //loadFooter();
+
                 window.location.reload();
                 break;
             case "about":
                 window.location = "./about";
-                //loadAbout(goto);
-                //loadFooter();
                 break;
             case "projects":
                 window.history.pushState("", "", "");
@@ -98,9 +94,6 @@
     }
     function loadAbout(goto)
     {
-        console.log("loading about");
-
-      //  window.location.replace("/about");
         let XHR = new XMLHttpRequest();
         XHR.open("GET", "/partials/about.ejs", true);
         XHR.send();
@@ -111,7 +104,6 @@
     }
     function loadProjects(goto)
     {
-        //console.log("loading projects");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();
@@ -124,7 +116,6 @@
     }
     function loadServices(goto)
     {
-        //console.log("loading services");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();
@@ -137,7 +128,6 @@
     }
     function loadContact(goto)
     {
-        //console.log("running the contact");
         document.title = goto;
 
         let XHR = new XMLHttpRequest();

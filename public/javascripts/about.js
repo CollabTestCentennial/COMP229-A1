@@ -1,4 +1,9 @@
-//to reference in the client
+/*
+File: about.js
+Name: Stephen Kamino
+StudentID: 822600292
+Date: Oct 09 2020
+*/
 "use strict";
 
 (function() {
